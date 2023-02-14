@@ -13,7 +13,7 @@ function showResult() {
 		sum += arr[i];
 		ans += sum;
 	}
-	document.querySelector('#resutl').textContent = ans;
+	document.querySelector('#result').textContent = ans;
 	console.log(ans);
 }
 
