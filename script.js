@@ -1,20 +1,31 @@
-//your code here
-'use strict';
-const arr = document.querySelector('.textInput').value;
-arr.sort();
-let sum = 0;
+"use strict";
 
-const btn = document.querySelector('.submitInput');
+let ans = 0;
+const btn = document.querySelector(".submitInput");
 
 //function
-let ans = 0;
-function showResult() {
-	for(let i = 0; i < arr.length; i++) {
-		sum += arr[i];
-		ans += sum;
-	}
-	document.querySelector('#result').textContent = ans;
-	console.log(ans);
+
+function showResult(event) {
+  const values = document.querySelector(".textInput").value;
+  const temp = values.split(",");
+  let arr = [];
+  for (let i = 0; i < temp.length; i++) {
+    arr.push(Number(temp[i]));
+  }
+  arr.sort(function (a, b) {
+    return a - b;
+  });
+  while (arr.length > 1) {
+    let first = arr.shift();
+    let second = arr.shift();
+    ans += first + second;
+    arr.push(first + second);
+    arr.sort(function (a, b) {
+      return a - b;
+    });
+  }
+  document.querySelector("#result").textContent = ans;
+  console.log(ans);
 }
 
-btn.addEventListener('click', showResult);
+btn.addEventListener("click", showResult);
